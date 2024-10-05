@@ -4,11 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 2px solid #333;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <script>
-        // Redirect to index.html where the popup will be displayed
-        window.location.href = "https://acharyadebasis.github.io/thank-you-qr/";
-    </script>
+
+<h1>Thank You!</h1>
+<p>Your generous contributions are truly appreciated!</p>
+
+<ul id="contributor-list"></ul>
+
+<script>
+    const contributors = [
+        { name: "Anisha", amount: 501 },
+        { name: "Satya", amount: 501 },
+        { name: "Deepti Pradhan(spider)", amount: 401 },
+        { name: "Aditya(209)", amount: 1001 },
+        { name: "Gopi", amount: 301 },
+        { name: "Debadatta", amount: 301 },
+        { name: "Mamuni nani/Bhaina", amount: 3001 },
+        { name: "Smurti Bhai", amount: 501 },
+        { name: "Manish", amount: 101 },
+        { name: "TipuBhai", amount: 101 },
+        { name: "PikachuDidi", amount: 101 },
+        { name: "Jojo", amount: 91 },
+        { name: "Debashish", amount: 101 },
+        { name: "Lopadid", amount: 201 },
+        { name: "Beaky", amount: 1001 },
+        { name: "Alok", amount: 101 },
+        { name: "RahulBhai,Papu,somu,Kahna,debu,bapi,payal", amount: 5001 },
+        { name: "Subham,badal,sipun,monalika,salu,pritam,madhu,ankita,barsha,mohit", amount: 7001 },
+        { name: "Akash,omm,rahul", amount: 501 },
+    ];
+
+    const contributorList = document.getElementById('contributor-list');
+
+    // Populate the contributor list
+    contributors.forEach(contributor => {
+        contributorList.innerHTML += `<li>${contributor.name}: ${contributor.amount}/-</li>`;
+    });
+</script>
+
 </body>
 </html>

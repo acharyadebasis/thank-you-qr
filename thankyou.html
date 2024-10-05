@@ -14,6 +14,7 @@
             background-size: cover; 
             position: relative; /* Position for overlay */
             color: #ffffff; /* White text for contrast */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         #blur-overlay {
             position: absolute;
@@ -28,12 +29,29 @@
         .content {
             position: relative; /* To place content above the blur */
             z-index: 1; /* Above overlay */
+            max-width: 600px; /* Optional: limit width for better readability */
+            margin: auto; /* Center the content */
+            padding: 20px; /* Add padding for mobile */
+        }
+        .highlight {
+            display: inline-block;
+            padding: 10px 20px; /* Padding around the highlight */
+            border-radius: 5px; /* Rounded corners */
+            margin-bottom: 20px; /* Space below highlight */
+            color: white; /* Text color */
+            animation: blink 1s infinite; /* Blinking effect */
+            background-color: #c1dd1f; /* Background color */
+        }
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1; /* Fully visible */
+            }
+            50% {
+                opacity: 0; /* Fully transparent */
+            }
         }
         #scanner-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #35c761; /* Primary blue color */
+            background-color: #35c761; /* Primary color */
             color: white; /* Text color */
             border: none;
             border-radius: 5px; /* Rounded corners */
@@ -65,7 +83,9 @@
             padding: 15px; /* Padding for items */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
             transition: box-shadow 0.2s;
-            color:rgb(29, 43, 43)
+            color: rgb(29, 43, 43);
+            word-wrap: break-word; /* Allows long words to break and wrap */
+            overflow-wrap: break-word; /* Support for different browsers */
         }
         .contributor-item:hover {
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow on hover */
@@ -81,10 +101,13 @@
 <div id="blur-overlay"></div>
 
 <div class="content">
+    <div class="highlight">
+        ***-->
+    </div>
+    
     <button id="scanner-button" onclick="window.location.href='https://acharyadebasis.github.io/thank-you-qr/scanner.html'">
         Click me to Join the Celebration! <i class="fas fa-qrcode"></i>
     </button>
-    </br></br>
 
     <h1>Thank You!</h1>
     <p>Thank you for your invaluable support! Your contributions empower us to continue our mission and make a meaningful impact. Wishing you a joyous Dussehra filled with victory and happiness!</p>

@@ -4,40 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
             padding: 50px;
+            background: url('./Durge.png') no-repeat center center fixed; /* Set your background image */
+            background-size: cover; 
+            position: relative; /* Position for overlay */
+            color: #ffffff; /* White text for contrast */
         }
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            border: 2px solid #333;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        .overlay {
-            position: fixed;
+        #blur-overlay {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: none;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay for contrast */
+            filter: blur(5px); /* Blur effect */
+            z-index: 0; /* Behind content */
+        }
+        .content {
+            position: relative; /* To place content above the blur */
+            z-index: 1; /* Above overlay */
+        }
+        #scanner-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #35c761; /* Primary blue color */
+            color: white; /* Text color */
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px 20px; /* Padding for size */
+            font-size: 16px; /* Font size */
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s; /* Animation */
+        }
+        #scanner-button:hover {
+            background-color: #c1509b; /* Darker blue on hover */
+            transform: scale(1.05); /* Slightly increase size on hover */
+        }
+        h1 {
+            color: #ffffff; /* White text color */
+            margin-bottom: 20px;
+        }
+        .contributor-list {
+            list-style-type: none; /* Remove default list styling */
+            padding: 0;
+            max-width: 600px; /* Limit max width */
+            margin: 0 auto; /* Center the list */
+            text-align: left; /* Align text to the left */
+        }
+        .contributor-item {
+            background-color: rgba(255, 255, 255, 0.8); /* Light background for items */
+            border: 1px solid #dee2e6; /* Light border */
+            border-radius: 8px; /* Rounded corners */
+            margin: 10px 0; /* Space between items */
+            padding: 15px; /* Padding for items */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: box-shadow 0.2s;
+            color:rgb(29, 43, 43)
+        }
+        .contributor-item:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+        }
+        .amount {
+            color: #28a745; /* Green color for amounts */
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-<h1>Thank You!</h1>
-<p>Your generous contributions are truly appreciated!</p>
+<div id="blur-overlay"></div>
 
-<ul id="contributor-list"></ul>
+<div class="content">
+    <button id="scanner-button" onclick="window.location.href='https://acharyadebasis.github.io/thank-you-qr/scanner.html'">
+        Join the Celebration! <i class="fas fa-qrcode"></i>
+    </button>
+    </br>
+
+    <h1>Thank You!</h1>
+    <p>Thank you for your invaluable support! Your contributions empower us to continue our mission and make a meaningful impact. Wishing you a joyous Dussehra filled with victory and happiness!</p>
+
+    <ul class="contributor-list" id="contributor-list"></ul>
+</div>
 
 <script>
     const contributors = [
@@ -64,9 +117,12 @@
 
     const contributorList = document.getElementById('contributor-list');
 
-    // Populate the contributor list
+    // Populate the contributor list with styled items
     contributors.forEach(contributor => {
-        contributorList.innerHTML += `<li>${contributor.name}: ${contributor.amount}/-</li>`;
+        const item = document.createElement('li');
+        item.className = 'contributor-item';
+        item.innerHTML = `<strong>${contributor.name}</strong> - <span class="amount">${contributor.amount}/-</span>`;
+        contributorList.appendChild(item);
     });
 </script>
 
